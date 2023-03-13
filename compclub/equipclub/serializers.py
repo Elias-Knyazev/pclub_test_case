@@ -2,12 +2,6 @@ from rest_framework import serializers
 from .models import EquipClub, UserRent
 
 
-class EquipClubSerializerList(serializers.ModelSerializer):
-    class Meta:
-        model = EquipClub
-        fields = '__all__'
-
-
 class EquipClubSerializer(serializers.ModelSerializer):
     class Meta:
         model = EquipClub

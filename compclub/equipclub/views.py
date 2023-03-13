@@ -7,18 +7,18 @@ from rest_framework.views import APIView
 
 from .models import EquipClub, UserRent
 from .permissions import IsAdminOrReadOnly
-from .serializers import EquipClubSerializer, EquipClubSerializerList, UserRentListSerializer, UserRentUpdateSerializer
+from .serializers import EquipClubSerializer, UserRentListSerializer, UserRentUpdateSerializer
 
 
 class ECListAPIView(generics.ListCreateAPIView):
     queryset = EquipClub.objects.all()
-    serializer_class = EquipClubSerializerList
+    serializer_class = EquipClubSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
 
 class ECDeleteAPIView(generics.DestroyAPIView):
     queryset = EquipClub.objects.all()
-    serializer_class = EquipClubSerializerList
+    serializer_class = EquipClubSerializer
     permission_classes = (IsAdminOrReadOnly,)
 
 
@@ -50,19 +50,21 @@ class RentEquipAPIView(APIView):
             return Response({"error": "Object does not exists"})
 
         new_data = request.data.copy()
-        eq_data = {}
+
         time_start = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M')
         time_delta = request.data.get('hour_rent')
         time_delta = timedelta(hours=time_delta)
         time_end = datetime.now(timezone.utc) + time_delta
         time_end = time_end.strftime('%Y-%m-%d %H:%M')
 
-        eq_data['type'] = new_data.get('type')
-        eq_data['eq_number'] = new_data.get('eq_number')
-        eq_data['hour_rent'] = new_data.get('hour_rent')
-        eq_data['time_rent_start'] = time_start
-        eq_data['time_rent_end'] = time_end
-        eq_data['is_busy'] = True
+        eq_data = {
+            'type': new_data.get('type'),
+            'eq_number': new_data.get('eq_number'),
+            'hour_rent': new_data.get('hour_rent'),
+            'time_rent_start': time_start,
+            'time_rent_end': time_end,
+            'is_busy': True,
+            }
 
         serializer = EquipClubSerializer(data=eq_data, instance=instance)
         serializer.is_valid(raise_exception=True)
@@ -82,29 +84,27 @@ class UserRentListCreateAPIView(generics.ListCreateAPIView):
 class UserRentUpdateAPIView(generics.UpdateAPIView):
     def put(self, request, *args, **kwargs):
         user_id = request.data.get("user", None)
-        print(request.data, args, kwargs)
 
         if not user_id:
             return Response({"error": "Method PUT not allowed"})
 
         try:
             instance = UserRent.objects.get(user_id=user_id)
-            print('++++++++', instance,'+++++++++++')
 
         except:
             return Response({"error": "Object does not exists"})
 
         hour_sum = UserRent.objects.get(user_id=user_id).hour_sum
         if hour_sum >= 100:
-            discount = 0.1
+            discount = 0.9
         hour_sum += request.data.get("last_hour_rent")
 
-        user_rent_data={}
-        user_rent_data['user_id'] = request.data.get('user_id')
-        user_rent_data['last_hour_rent'] = request.data.get('last_hour_rent')
-        user_rent_data['hour_sum'] = hour_sum
-        user_rent_data['discount'] = discount
-
+        user_rent_data={
+            'user_id': request.data.get('user_id'),
+            'last_hour_rent': request.data.get('last_hour_rent'),
+            'hour_sum': hour_sum,
+            'discount': discount,
+            }
         serializer = UserRentUpdateSerializer(data=user_rent_data, instance=instance)
         serializer.is_valid(raise_exception=True)
         serializer.save()
