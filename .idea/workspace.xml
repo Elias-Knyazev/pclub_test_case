@@ -7,7 +7,6 @@
     <list default="true" id="6648fd83-c3d9-462f-9958-f2e7e6df2646" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compclub/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/compclub/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compclub/equipclub/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/compclub/equipclub/serializers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compclub/equipclub/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/compclub/equipclub/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

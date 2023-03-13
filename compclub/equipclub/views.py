@@ -97,6 +97,8 @@ class UserRentUpdateAPIView(generics.UpdateAPIView):
         hour_sum = UserRent.objects.get(user_id=user_id).hour_sum
         if hour_sum >= 100:
             discount = 0.9
+        else:
+            discount = 1.0
         hour_sum += request.data.get("last_hour_rent")
 
         user_rent_data={
