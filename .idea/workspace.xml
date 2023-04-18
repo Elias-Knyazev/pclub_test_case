@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6648fd83-c3d9-462f-9958-f2e7e6df2646" name="Changes" comment="">
+    <list default="true" id="6648fd83-c3d9-462f-9958-f2e7e6df2646" name="Changes" comment="second commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compclub/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/compclub/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compclub/equipclub/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/compclub/equipclub/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +46,18 @@
       <option name="presentableId" value="Default" />
       <updated>1677074325150</updated>
     </task>
+    <task id="LOCAL-00001" summary="second commit">
+      <created>1678717850199</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678717850200</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="second commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="second commit" />
   </component>
 </project>
