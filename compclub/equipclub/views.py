@@ -27,10 +27,8 @@ class EquipClubNotBusyAPIView(APIView):
     def get(self, request):
         current_datetime = datetime.now(timezone.utc)
         for i in EquipClub.objects.all():
-            if  i.time_rent_end != '0':
-                time_rent_end = datetime.strptime(str(i.time_rent_end), '%Y-%m-%d %H:%M')
-                if time_rent_end.timestamp() < current_datetime.timestamp():
-                    EquipClub.objects.filter(id=i.id).update(is_busy=False, time_rent_start='0', time_rent_end='0')
+            if i.time_rent_end < current_datetime:
+                EquipClub.objects.filter(id=i.id).update(is_busy=False)
 
         return Response(EquipClub.objects.filter(is_busy=False).values())
 

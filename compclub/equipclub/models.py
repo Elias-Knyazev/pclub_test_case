@@ -7,8 +7,8 @@ class EquipClub(models.Model):
     eq_number = models.IntegerField()
     rent_price = models.FloatField(default=0)
     hour_rent = models.IntegerField(default=0)
-    time_rent_start = models.CharField(max_length=255, default=0)
-    time_rent_end = models.CharField(max_length=255, default=0)
+    time_rent_start = models.DateTimeField(auto_now=True)
+    time_rent_end = models.DateTimeField(auto_now=True)
     is_busy = models.BooleanField(default=False)
 
     def __str__(self):
