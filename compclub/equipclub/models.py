@@ -3,12 +3,12 @@ from django.db import models
 
 
 class EquipClub(models.Model):
-    type = models.CharField(max_length=255)
-    eq_number = models.IntegerField()
+    type = models.CharField(max_length=255, blank=True)
+    eq_number = models.IntegerField(null=True)
     rent_price = models.FloatField(default=0)
     hour_rent = models.IntegerField(default=0)
-    time_rent_start = models.DateTimeField(auto_now=True)
-    time_rent_end = models.DateTimeField(auto_now=True)
+    time_rent_start = models.DateTimeField(null=True)
+    time_rent_end = models.DateTimeField(null=True)
     is_busy = models.BooleanField(default=False)
 
     def __str__(self):
